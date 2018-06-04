@@ -125,18 +125,15 @@ def song_title_counts
   # COUNT of times they show up.
   execute(<<-SQL)
   SELECT
-    tracks.song, count(albums.title)
+    tracks.song, count(song)
   FROM 
     albums
   JOIN
     tracks on albums.asin = tracks.album
-  WHERE
-    tracks.song = albums.title
-  GROUP BY
+  Group by 
     tracks.song
-  HAVING
-    count(albums.title) > 2 
-
+  HAVING 
+    count(song) > 2
   SQL
 end
 
